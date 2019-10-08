@@ -7,23 +7,30 @@
  */
 
 import React, { Component } from 'react';
-import { FlatList } from 'react-native'; //React Native component to render a list of items
+import { FlatList } from 'react-native';
 import ForecastCard from './components/ForecastCard';
+
 
 export default class App extends React.Component {
 
-  state = {
-        latitude: 0,
-        longitude: 0,
-        forecast: [],
-        error: ''
-      };
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      latitude: 0,
+      longitude: 0,
+      forecast: [],
+      error: ''
+    };
+  }
 
   componentDidMount() {
-    this.getLocation();     // Get the user's location
+    // Get the user's location
+    this.getLocation();
   }
 
   getLocation() {
+
     // Get the current position of the user
     navigator.geolocation.getCurrentPosition(
       (position) => {
@@ -40,15 +47,16 @@ export default class App extends React.Component {
   }
 
   getWeather() {
+
     // Construct the API url to call
-    let url = 'https://api.openweathermap.org/data/2.5/forecast?lat=' + this.state.latitude + '&lon=' + this.state.longitude + '&units=metric&appid=e405a49c88462d007a0b53d3208dfbf3';
+    let url = 'https://api.openweathermap.org/data/2.5/forecast?lat=' + this.state.latitude + '&lon=' + this.state.longitude + '&units=metric&appid=YOUR_KEY_HERE';
 
     // Call the API, and set the state of the weather forecast
     fetch(url)
       .then(response => response.json())
-      .then(res => {
+      .then(data => {
         this.setState((prevState, props) => ({
-          forecast: res
+          forecast: data
         }));
       })
   }
@@ -59,5 +67,3 @@ export default class App extends React.Component {
     );
   }
 }
-
-export default App;
