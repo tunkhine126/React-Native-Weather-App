@@ -10,7 +10,6 @@ import React, { Component } from 'react';
 import { FlatList } from 'react-native'; //React Native component to render a list of items
 import ForecastCard from './components/ForecastCard';
 
-
 export default class App extends React.Component {
 
   state = {
@@ -42,14 +41,14 @@ export default class App extends React.Component {
 
   getWeather() {
     // Construct the API url to call
-    let url = 'https://api.openweathermap.org/data/2.5/forecast?lat=' + this.state.latitude + '&lon=' + this.state.longitude + '&units=metric&appid=YOUR_KEY_HERE';
+    let url = 'https://api.openweathermap.org/data/2.5/forecast?lat=' + this.state.latitude + '&lon=' + this.state.longitude + '&units=metric&appid=e405a49c88462d007a0b53d3208dfbf3';
 
     // Call the API, and set the state of the weather forecast
     fetch(url)
       .then(response => response.json())
-      .then(data => {
+      .then(res => {
         this.setState((prevState, props) => ({
-          forecast: data
+          forecast: res
         }));
       })
   }
