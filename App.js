@@ -62,8 +62,8 @@ export default class App extends React.Component {
   }
 
   render() {
-    return (
+    return this.state.position instanceof Object ? (
       <FlatList data={this.state.forecast.list} style={{ marginTop: 20 }} keyExtractor={item => item.dt_txt} renderItem={({ item }) => <ForecastCard detail={item} location={this.state.forecast.city.name} />} />
-    );
+    ) : null;
   }
 }
