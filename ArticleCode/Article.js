@@ -16,7 +16,7 @@ export default class App extends React.Component {
           <Text>Fetching The Weather</Text>
         ) : (
             <View>
-              <Text>Minimalist Weather App</Text>
+              <Text>My Weather App</Text>
             </View>
           )}
       </View>
